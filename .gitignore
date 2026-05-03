@@ -1,0 +1,11 @@
+node_modules/
+playwright-report/
+test-results/
+.env
+.env.*
+
+QA-Automation/node_modules/
+QA-Automation/playwright-report/
+QA-Automation/test-results/
+QA-Automation/analysis-screenshots/
+QA-Automation/.vscode/

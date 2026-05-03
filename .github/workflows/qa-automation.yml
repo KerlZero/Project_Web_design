@@ -1,0 +1,54 @@
+name: QA Automation
+
+on:
+  pull_request:
+    paths:
+      - "SourceCode/**"
+      - "QA-Automation/**"
+      - ".github/workflows/qa-automation.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "SourceCode/**"
+      - "QA-Automation/**"
+      - ".github/workflows/qa-automation.yml"
+
+jobs:
+  playwright:
+    name: Playwright QA
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: QA-Automation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: QA-Automation/package-lock.json
+
+      - name: Install QA dependencies
+        run: npm ci
+
+      - name: Typecheck QA tests
+        run: npm run typecheck
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright QA
+        run: npm run test:e2e
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: QA-Automation/playwright-report/
+          retention-days: 7

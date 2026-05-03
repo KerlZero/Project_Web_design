@@ -1,0 +1,26 @@
+{
+  "version": "v1",
+  "status": "approved-for-v1-bugfix",
+  "assets": [
+    { "id": "nav-dashboard", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/dashboard.svg", "target": "SourceCode/assets/icons/dashboard.svg", "usedBy": [".nav-dashboard"], "alt": "Dashboard icon", "required": true },
+    { "id": "nav-components", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/components.svg", "target": "SourceCode/assets/icons/components.svg", "usedBy": [".nav-components"], "alt": "Components icon", "required": true },
+    { "id": "nav-snippets", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/snippets.svg", "target": "SourceCode/assets/icons/snippets.svg", "usedBy": [".nav-snippets"], "alt": "Snippets icon", "required": true },
+    { "id": "nav-code", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/code.svg", "target": "SourceCode/assets/icons/code.svg", "usedBy": [".nav-code"], "alt": "Code icon", "required": true },
+    { "id": "nav-categories", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/categories.svg", "target": "SourceCode/assets/icons/categories.svg", "usedBy": [".nav-categories"], "alt": "Categories icon", "required": true },
+    { "id": "topbar-search", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/search.svg", "target": "SourceCode/assets/icons/search.svg", "usedBy": [".search-icon-img"], "alt": "Search icon", "required": true },
+    { "id": "feature-preview", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/preview.svg", "target": "SourceCode/assets/icons/preview.svg", "usedBy": [".feature-preview"], "alt": "Preview icon", "required": true },
+    { "id": "feature-copy", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/copy.svg", "target": "SourceCode/assets/icons/copy.svg", "usedBy": [".feature-copy"], "alt": "Copy icon", "required": true },
+    { "id": "feature-organized", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/organized.svg", "target": "SourceCode/assets/icons/organized.svg", "usedBy": [".feature-organized"], "alt": "Organized icon", "required": true },
+    { "id": "category-button", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/button.svg", "target": "SourceCode/assets/icons/button.svg", "usedBy": [".shortcut-card"], "alt": "Button component icon", "required": true },
+    { "id": "category-loading-bar", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/loading-bar.svg", "target": "SourceCode/assets/icons/loading-bar.svg", "usedBy": [".shortcut-card"], "alt": "Loading bar icon", "required": true },
+    { "id": "category-progress-bar", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/progress-bar.svg", "target": "SourceCode/assets/icons/progress-bar.svg", "usedBy": [".shortcut-card"], "alt": "Progress bar icon", "required": true },
+    { "id": "category-modal", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/modal.svg", "target": "SourceCode/assets/icons/modal.svg", "usedBy": [".shortcut-card"], "alt": "Modal icon", "required": true },
+    { "id": "category-alert", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/alert.svg", "target": "SourceCode/assets/icons/alert.svg", "usedBy": [".shortcut-card"], "alt": "Alert icon", "required": true },
+    { "id": "category-form", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/form.svg", "target": "SourceCode/assets/icons/form.svg", "usedBy": [".shortcut-card"], "alt": "Form icon", "required": true },
+    { "id": "stat-total", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-total.svg", "target": "SourceCode/assets/icons/stat-total.svg", "usedBy": [".stat-row"], "alt": "Total components stat icon", "required": true },
+    { "id": "stat-html", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-html.svg", "target": "SourceCode/assets/icons/stat-html.svg", "usedBy": [".stat-row"], "alt": "HTML blocks stat icon", "required": true },
+    { "id": "stat-css", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-css.svg", "target": "SourceCode/assets/icons/stat-css.svg", "usedBy": [".stat-row"], "alt": "CSS blocks stat icon", "required": true },
+    { "id": "stat-js", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-js.svg", "target": "SourceCode/assets/icons/stat-js.svg", "usedBy": [".stat-row"], "alt": "JavaScript blocks stat icon", "required": true },
+    { "id": "stat-updated", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-updated.svg", "target": "SourceCode/assets/icons/stat-updated.svg", "usedBy": [".stat-row"], "alt": "Updated items stat icon", "required": true }
+  ]
+}
