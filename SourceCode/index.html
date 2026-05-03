@@ -1,0 +1,316 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Component Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <a class="brand" href="#dashboard" aria-label="Component Library home">
+          <span class="brand-mark">CL</span>
+          <span>
+            <strong>Component Library</strong>
+            <small>Design + Code Ref</small>
+          </span>
+        </a>
+
+        <nav class="side-nav" aria-label="Sections">
+          <a class="nav-item is-active" href="#dashboard" data-section-link="dashboard"><img class="nav-icon nav-dashboard" src="assets/icons/dashboard.svg" alt="" aria-hidden="true">Dashboard</a>
+          <a class="nav-item" href="#components" data-section-link="components"><img class="nav-icon nav-components" src="assets/icons/components.svg" alt="" aria-hidden="true">Components</a>
+          <a class="nav-item" href="#snippets" data-section-link="snippets"><img class="nav-icon nav-snippets" src="assets/icons/snippets.svg" alt="" aria-hidden="true">Snippets</a>
+          <a class="nav-item" href="#code" data-section-link="code"><img class="nav-icon nav-code" src="assets/icons/code.svg" alt="" aria-hidden="true">Code</a>
+          <a class="nav-item" href="#categories" data-section-link="categories"><img class="nav-icon nav-categories" src="assets/icons/categories.svg" alt="" aria-hidden="true">Categories</a>
+        </nav>
+
+        <div class="sidebar-block">
+          <p class="sidebar-title">Categories</p>
+          <div class="category-list" id="categoryList"></div>
+        </div>
+
+        <aside class="sidebar-info-card" aria-label="Component Library summary">
+          <strong>Component Library</strong>
+          <p>Build faster with reusable UI patterns and code examples.</p>
+          <div class="sidebar-info-art" aria-hidden="true"></div>
+        </aside>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar">
+          <div class="mobile-title">
+            <strong>Component Library</strong>
+            <small>Figma-style v1 build</small>
+          </div>
+          <div class="search-wrap">
+            <img class="search-icon-img" src="assets/icons/search.svg" alt="" aria-hidden="true">
+            <input id="globalSearch" type="search" placeholder="Search components, snippets, code..." aria-label="Search components">
+          </div>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme"></button>
+          <button class="button primary" id="openAddComponent" type="button">+ Add Component</button>
+        </header>
+
+        <main>
+          <section class="screen is-visible" id="dashboard" data-section="dashboard">
+            <div class="layout-grid dashboard-top-grid">
+              <div class="dashboard-hero-stack">
+                <div class="hero-panel">
+                  <div>
+                    <h1>Reusable UI patterns<br>with preview and code</h1>
+                    <p class="lead">Browse components, snippets, and code examples built for fast and consistent reuse.</p>
+                  </div>
+                  <div class="hero-circuit" aria-hidden="true">
+                    <div class="hero-chip"><span></span></div>
+                  </div>
+                </div>
+
+                <div class="hero-feature-row" aria-label="Component Library advantages">
+                  <article>
+                    <span class="feature-icon"><img src="assets/icons/preview.svg" alt="" aria-hidden="true"></span>
+                    <div>
+                      <strong>Preview First</strong>
+                      <small>See it in action</small>
+                    </div>
+                  </article>
+                  <article>
+                    <span class="feature-icon"><img src="assets/icons/copy.svg" alt="" aria-hidden="true"></span>
+                    <div>
+                      <strong>Copy & Use</strong>
+                      <small>Get the code you need</small>
+                    </div>
+                  </article>
+                  <article>
+                    <span class="feature-icon"><img src="assets/icons/organized.svg" alt="" aria-hidden="true"></span>
+                    <div>
+                      <strong>Organized</strong>
+                      <small>Find everything easily</small>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <aside class="content-card">
+                <p class="eyebrow">Library Stats</p>
+                <p class="muted">Code blocks available in the current library.</p>
+                <div class="stats-list" id="statsList"></div>
+              </aside>
+            </div>
+
+            <section class="content-card dashboard-featured-card">
+              <div class="section-title-row">
+                <p class="eyebrow">Featured Categories</p>
+                <button class="link-button" type="button" data-jump="components">View all</button>
+              </div>
+              <div class="shortcut-grid" id="shortcutGrid"></div>
+            </section>
+
+            <div class="layout-grid">
+              <section class="content-card wide">
+                <div class="section-title-row">
+                  <div>
+                    <p class="eyebrow">Recent components</p>
+                    <h2>Recently updated references.</h2>
+                  </div>
+                </div>
+                <div class="component-grid compact" id="recentComponents"></div>
+              </section>
+
+              <aside class="content-card">
+                <p class="eyebrow">Popular Snippets</p>
+                <p class="muted">Ranked by Views + Copy Count.</p>
+                <div class="popular-list" id="popularDashboard"></div>
+              </aside>
+            </div>
+          </section>
+
+          <section class="screen" id="components" data-section="components">
+            <div class="page-heading">
+              <p class="eyebrow">Components catalog</p>
+              <h1>Preview, filter, and open reusable components.</h1>
+              <p class="lead">This page mirrors the visual mockup card system: clear preview, category, difficulty, code badges, and a single component detail action.</p>
+            </div>
+            <div class="filter-panel">
+              <label>
+                Category
+                <select id="categoryFilter"></select>
+              </label>
+              <label>
+                Code Type
+                <select id="codeFilter">
+                  <option value="all">All</option>
+                  <option value="HTML">HTML</option>
+                  <option value="CSS">CSS</option>
+                  <option value="JavaScript">JavaScript</option>
+                </select>
+              </label>
+              <label>
+                Difficulty
+                <select id="difficultyFilter">
+                  <option value="all">All</option>
+                  <option value="Basic">Basic</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </label>
+              <label>
+                Behavior
+                <select id="behaviorFilter">
+                  <option value="all">All</option>
+                  <option value="Interactive">Interactive</option>
+                  <option value="Static">Static</option>
+                </select>
+              </label>
+            </div>
+            <div class="category-pill-row" id="categoryPills" aria-label="Component categories"></div>
+            <div class="component-grid" id="componentGrid"></div>
+          </section>
+
+          <section class="screen" id="snippets" data-section="snippets">
+            <div class="page-heading">
+              <p class="eyebrow">Snippets</p>
+              <h1>Compact copy-ready patterns grouped by use case.</h1>
+              <p class="lead">Each snippet is ranked and reused from component data. Popularity uses Views + Copy Count.</p>
+            </div>
+            <div class="snippet-groups" id="snippetGroups"></div>
+          </section>
+
+          <section class="screen" id="code" data-section="code">
+            <div class="page-heading">
+              <p class="eyebrow">Code library / JSON admin</p>
+              <h1>Manage component records and inspect JSON data.</h1>
+              <p class="lead">Admin-style reference view for JSON records, matching the planned component data model.</p>
+            </div>
+            <div class="admin-grid">
+              <section class="content-card wide">
+                <div class="section-title-row">
+                  <h2>Component records</h2>
+                  <button class="button secondary" id="exportJson" type="button">Export JSON</button>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Component ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Updated</th>
+                        <th>Code Type</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminTable"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="screen" id="categories" data-section="categories">
+            <div class="page-heading">
+              <p class="eyebrow">Categories</p>
+              <h1>Reference groups for design and code reuse.</h1>
+            </div>
+            <div class="category-dashboard" id="categoryDashboard"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="componentModal" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close modal">Close</button>
+        <div class="modal-header">
+          <p class="eyebrow" id="modalCategory">Component</p>
+          <h2 id="modalTitle">Component title</h2>
+          <div class="meta-row" id="modalMeta"></div>
+        </div>
+        <div class="modal-grid">
+          <div>
+            <h3>Preview</h3>
+            <div class="live-preview" id="modalPreview"></div>
+            <div class="related-box">
+              <h3>Usage Notes</h3>
+              <p id="modalNotes"></p>
+            </div>
+          </div>
+          <div>
+            <div class="tab-list" role="tablist" aria-label="Code tabs">
+              <button class="tab is-active" type="button" data-tab="html">HTML</button>
+              <button class="tab" type="button" data-tab="css">CSS</button>
+              <button class="tab" type="button" data-tab="js">JavaScript</button>
+              <button class="tab" type="button" data-tab="notes">Notes</button>
+            </div>
+            <pre class="code-block" id="modalCode"></pre>
+            <div class="copy-actions">
+              <button class="button secondary" type="button" data-copy="html">Copy HTML</button>
+              <button class="button secondary" type="button" data-copy="css">Copy CSS</button>
+              <button class="button secondary" type="button" data-copy="js">Copy JS</button>
+              <button class="button primary" type="button" data-copy="all">Copy All</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="addModal" hidden>
+      <section class="modal add-modal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+        <button class="modal-close" type="button" data-close-add aria-label="Close add component">Close</button>
+        <div class="modal-header">
+          <p class="eyebrow">JSON File Admin</p>
+          <h2 id="addTitle">Add Component</h2>
+          <p class="muted">Adds a new in-browser record using the same structure planned for <code>components.json</code>.</p>
+        </div>
+        <form class="add-grid" id="addComponentForm">
+          <div class="form-stack">
+            <label>Name <input name="name" required placeholder="Glow Icon Button"></label>
+            <label>Category <select name="category" required></select></label>
+            <label>Difficulty
+              <select name="difficulty">
+                <option>Basic</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </select>
+            </label>
+            <label>Tags <input name="tags" placeholder="button, hover, cyan"></label>
+            <label>Description <textarea name="description" rows="3" placeholder="Short component purpose"></textarea></label>
+          </div>
+          <div class="form-stack">
+            <label>HTML <textarea name="html" rows="5" placeholder="<button class='demo'>Action</button>"></textarea></label>
+            <label>CSS <textarea name="css" rows="5" placeholder=".demo { ... }"></textarea></label>
+            <label>JavaScript <textarea name="js" rows="4" placeholder="// Optional behavior"></textarea></label>
+            <label>Notes <textarea name="notes" rows="3" placeholder="When to use this component"></textarea></label>
+          </div>
+          <aside class="add-preview-panel">
+            <h3>Preview</h3>
+            <div class="live-preview" id="addPreview"></div>
+            <p class="muted">Status: ready to save to JSON-style data.</p>
+            <div class="copy-actions">
+              <button class="button secondary" type="button" id="previewAdd">Preview</button>
+              <button class="button primary" type="submit">Save to JSON</button>
+              <button class="button ghost" type="button" data-close-add>Cancel</button>
+            </div>
+          </aside>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="jsonModal" hidden>
+      <section class="modal json-modal" role="dialog" aria-modal="true" aria-labelledby="jsonModalTitle">
+        <button class="modal-close" type="button" data-close-json aria-label="Close JSON preview">Close</button>
+        <div class="modal-header">
+          <p class="eyebrow">JSON Record Preview</p>
+          <h2 id="jsonModalTitle">Component JSON</h2>
+        </div>
+        <pre class="json-preview" id="jsonModalCode"></pre>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
