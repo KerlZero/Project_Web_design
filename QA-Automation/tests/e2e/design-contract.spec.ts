@@ -1,6 +1,10 @@
 import { expect, test } from "@playwright/test";
 import { forbiddenWords, requiredDesignText, sections } from "../support/test-data.js";
 
+// Purpose:
+// Checks the stable product/content contract for the Component Library v1 UI.
+// These tests are not pixel-based; they make sure required labels, sections, and
+// forbidden legacy wording stay aligned with the approved design direction.
 test.describe("Component Library v1 design contract", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");

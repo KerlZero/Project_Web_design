@@ -1,0 +1,71 @@
+name: Production Readiness
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Production URL to test. Falls back to deployment URL, PRODUCTION_BASE_URL secret, or configured production URL."
+        required: false
+        type: string
+
+jobs:
+  production-smoke:
+    name: Production Smoke QA
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.deployment_status.state == 'success' &&
+        (
+          github.event.deployment.environment == 'production' ||
+          github.event.deployment.environment == 'Production'
+        )
+      )
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: QA-Automation
+    env:
+      BASE_URL: ${{ inputs.base_url || github.event.deployment_status.target_url || secrets.PRODUCTION_BASE_URL || 'https://project-web-design-five.vercel.app/' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate production URL
+        run: |
+          if [ -z "$BASE_URL" ]; then
+            echo "BASE_URL is required. Set the production workflow input, deployment target URL, PRODUCTION_BASE_URL secret, or configured production URL."
+            exit 1
+          fi
+          echo "Testing production target: $BASE_URL"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: QA-Automation/package-lock.json
+
+      - name: Install QA dependencies
+        run: npm ci
+
+      - name: Typecheck QA tests
+        run: npm run typecheck
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run production smoke QA
+        run: npm run test:e2e:prod
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-playwright-artifacts
+          path: |
+            QA-Automation/playwright-report/
+            QA-Automation/test-results/
+          retention-days: 7

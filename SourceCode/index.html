@@ -28,16 +28,6 @@
           <a class="nav-item" href="#categories" data-section-link="categories"><img class="nav-icon nav-categories" src="assets/icons/categories.svg" alt="" aria-hidden="true">Categories</a>
         </nav>
 
-        <div class="sidebar-block">
-          <p class="sidebar-title">Categories</p>
-          <div class="category-list" id="categoryList"></div>
-        </div>
-
-        <aside class="sidebar-info-card" aria-label="Component Library summary">
-          <strong>Component Library</strong>
-          <p>Build faster with reusable UI patterns and code examples.</p>
-          <div class="sidebar-info-art" aria-hidden="true"></div>
-        </aside>
       </aside>
 
       <div class="workspace">
@@ -50,7 +40,7 @@
             <img class="search-icon-img" src="assets/icons/search.svg" alt="" aria-hidden="true">
             <input id="globalSearch" type="search" placeholder="Search components, snippets, code..." aria-label="Search components">
           </div>
-          <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme"></button>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false"></button>
           <button class="button primary" id="openAddComponent" type="button">+ Add Component</button>
         </header>
 
@@ -64,7 +54,7 @@
                     <p class="lead">Browse components, snippets, and code examples built for fast and consistent reuse.</p>
                   </div>
                   <div class="hero-circuit" aria-hidden="true">
-                    <div class="hero-chip"><span></span></div>
+                    <img class="hero-panel-asset" src="assets/ui/hero-panel-v2.svg" alt="">
                   </div>
                 </div>
 
@@ -232,10 +222,6 @@
           <div>
             <h3>Preview</h3>
             <div class="live-preview" id="modalPreview"></div>
-            <div class="related-box">
-              <h3>Usage Notes</h3>
-              <p id="modalNotes"></p>
-            </div>
           </div>
           <div>
             <div class="tab-list" role="tablist" aria-label="Code tabs">

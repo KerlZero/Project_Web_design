@@ -6,17 +6,10 @@ on:
       - "SourceCode/**"
       - "QA-Automation/**"
       - ".github/workflows/qa-automation.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "SourceCode/**"
-      - "QA-Automation/**"
-      - ".github/workflows/qa-automation.yml"
 
 jobs:
   playwright:
-    name: Playwright QA
+    name: PR Quality Gate
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -50,5 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: QA-Automation/playwright-report/
+          path: |
+            QA-Automation/playwright-report/
+            QA-Automation/test-results/
           retention-days: 7

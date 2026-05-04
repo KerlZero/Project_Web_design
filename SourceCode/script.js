@@ -269,20 +269,20 @@ function componentCard(component) {
       <div class="card-preview">${renderPreview(component)}</div>
       <div class="card-footer">
         <div class="badge-row">${badges}</div>
-        <button class="text-action" type="button" data-view="${component.id}">View Component</button>
-      </div>
-      <div class="card-usage">
-        <span>${component.views} views</span>
-        <span>${component.copyCount} copies</span>
+        <div class="card-action-row">
+          <button class="text-action" type="button" data-view="${component.id}">View Component</button>
+        </div>
       </div>
     </article>
   `;
 }
 
 function renderBaseNavigation() {
-  selectors.categoryList.innerHTML = categories.map(category => (
-    `<button type="button" data-category-jump="${category}">${category}</button>`
-  )).join("");
+  if (selectors.categoryList) {
+    selectors.categoryList.innerHTML = categories.map(category => (
+      `<button type="button" data-category-jump="${category}">${category}</button>`
+    )).join("");
+  }
 
   selectors.categoryFilter.innerHTML = [
     '<option value="all">All</option>',
@@ -412,7 +412,7 @@ function renderSnippets() {
       <section class="content-card snippet-section">
         <div class="section-title-row">
           <h2>${group}</h2>
-          <button class="link-button" type="button" data-jump="components">View all</button>
+          <button class="link-button" type="button" data-snippet-section="${group}">View all</button>
         </div>
         <div class="snippet-list">
           ${snippetLibrary[group].map(item => `
@@ -423,8 +423,10 @@ function renderSnippets() {
               <div class="snippet-body">
                 <h3>${escapeHtml(item.name)}</h3>
                 <div class="badge-row">${item.tags.map(type => `<span>${type}</span>`).join("")}</div>
-                <small>${item.views} views / ${item.copies} copies</small>
-                <button class="snippet-copy" type="button" data-copy-static="${item.name}">Copy Code</button>
+                <button class="snippet-copy" type="button" data-copy-static="${item.name}">
+                  <img class="snippet-copy-icon" src="${iconPath}copy-code.svg" alt="" aria-hidden="true">
+                  <span>Copy Code</span>
+                </button>
               </div>
             </article>
           `).join("")}
@@ -486,6 +488,12 @@ function openSection(sectionId) {
   window.location.hash = sectionId;
 }
 
+function openComponentsWithCriteria(category) {
+  selectors.categoryFilter.value = category;
+  openSection("components");
+  renderComponents();
+}
+
 function openComponent(id) {
   const component = components.find(item => item.id === id);
   if (!component) return;
@@ -499,11 +507,8 @@ function openComponent(id) {
   document.querySelector("#modalMeta").innerHTML = `
     <span>Difficulty: ${component.difficulty}</span>
     <span>Tags: ${component.tags.join(", ")}</span>
-    <span>Views: ${component.views}</span>
-    <span>Copy Count: ${component.copyCount}</span>
   `;
   document.querySelector("#modalPreview").innerHTML = renderPreview(component);
-  document.querySelector("#modalNotes").textContent = component.notes;
   selectors.modal.hidden = false;
   document.body.style.overflow = "hidden";
   renderModalCode();
@@ -535,7 +540,20 @@ function openJsonPreview(id) {
 }
 
 async function copyText(text, label = "Copied") {
-  await navigator.clipboard.writeText(text);
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
   showToast(label);
 }
 
@@ -663,10 +681,11 @@ function bindEvents() {
 
     if (target.dataset.view) openComponent(target.dataset.view);
     if (target.dataset.jump) openSection(target.dataset.jump);
+    if (target.dataset.snippetSection) {
+      openComponentsWithCriteria(target.dataset.snippetSection);
+    }
     if (target.dataset.shortcut || target.dataset.categoryJump) {
-      selectors.categoryFilter.value = target.dataset.shortcut || target.dataset.categoryJump;
-      openSection("components");
-      renderComponents();
+      openComponentsWithCriteria(target.dataset.shortcut || target.dataset.categoryJump);
     }
     if (target.dataset.pillCategory) {
       selectors.categoryFilter.value = target.dataset.pillCategory;
@@ -715,7 +734,8 @@ function bindEvents() {
   });
 
   document.querySelector("#themeToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.toggle("dark-mode");
+    document.querySelector("#themeToggle").setAttribute("aria-pressed", String(isDark));
   });
 
   document.addEventListener("keydown", event => {

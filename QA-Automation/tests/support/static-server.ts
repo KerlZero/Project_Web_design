@@ -2,6 +2,8 @@ import { createReadStream, existsSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, normalize, resolve } from "node:path";
 
+// Playwright starts this static server from playwright.config.ts before tests run.
+// It serves SourceCode/ as the browser baseURL without requiring a production build step.
 const port = Number(process.env.PORT || 4173);
 const root = resolve("..", "SourceCode");
 
@@ -22,6 +24,7 @@ function resolveRequestPath(requestUrl = "/") {
   const filePath = pathname === "/" ? "index.html" : pathname.slice(1);
   const absolutePath = resolve(root, normalize(filePath));
 
+  // Keep requests inside SourceCode/ so tests cannot read arbitrary workspace files.
   if (!absolutePath.startsWith(root)) {
     return null;
   }

@@ -21,6 +21,8 @@
     { "id": "stat-html", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-html.svg", "target": "SourceCode/assets/icons/stat-html.svg", "usedBy": [".stat-row"], "alt": "HTML blocks stat icon", "required": true },
     { "id": "stat-css", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-css.svg", "target": "SourceCode/assets/icons/stat-css.svg", "usedBy": [".stat-row"], "alt": "CSS blocks stat icon", "required": true },
     { "id": "stat-js", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-js.svg", "target": "SourceCode/assets/icons/stat-js.svg", "usedBy": [".stat-row"], "alt": "JavaScript blocks stat icon", "required": true },
-    { "id": "stat-updated", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-updated.svg", "target": "SourceCode/assets/icons/stat-updated.svg", "usedBy": [".stat-row"], "alt": "Updated items stat icon", "required": true }
+    { "id": "stat-updated", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/stat-updated.svg", "target": "SourceCode/assets/icons/stat-updated.svg", "usedBy": [".stat-row"], "alt": "Updated items stat icon", "required": true },
+    { "id": "snippet-copy-code", "type": "icon", "source": "Design-System-Library/Assets/v1/icons/copy-code.svg", "target": "SourceCode/assets/icons/copy-code.svg", "usedBy": [".snippet-copy-icon"], "alt": "Copy code icon", "required": true },
+    { "id": "hero-panel-v2", "type": "ui-asset", "source": "Design-System-Library/Assets/v1/ui/hero-panel-v2.svg", "target": "SourceCode/assets/ui/hero-panel-v2.svg", "usedBy": [".hero-panel-asset"], "alt": "Dashboard hero panel visual asset", "required": true }
   ]
 }

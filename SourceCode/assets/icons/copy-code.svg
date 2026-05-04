@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-label="Copy code icon">
+  <rect x="7" y="4" width="11" height="13" rx="3" fill="#eef8ff" stroke="#0b78d0" stroke-width="2"/>
+  <rect x="4" y="7" width="11" height="13" rx="3" fill="#ffffff" stroke="#00b8ff" stroke-width="2"/>
+  <path d="M8 12h4M8 15h3" stroke="#0b78d0" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

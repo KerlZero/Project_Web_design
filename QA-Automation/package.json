@@ -6,6 +6,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
+    "test:e2e:prod": "playwright test tests/e2e/production-smoke.spec.ts tests/e2e/asset-rendering.spec.ts tests/e2e/responsive.spec.ts",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:update": "playwright test --update-snapshots"
