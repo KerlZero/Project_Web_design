@@ -1,6 +1,6 @@
 # Component Library Project
 
-โปรเจกต์นี้คือเว็บ **Component Library** สำหรับเก็บตัวอย่าง UI components, snippets, preview และ code อ้างอิง เพื่อนำไปใช้ซ้ำในการ design หรือ coding project อื่นในอนาคต
+**Component Library** สำหรับเก็บตัวอย่าง UI components, snippets, preview และ code อ้างอิง เพื่อนำไปใช้ซ้ำในการ design หรือ coding project อื่นในอนาคต
 
 Theme หลักของเว็บคือ blue-white, sci-fi / tech, management dashboard style และเน้นการแยกหมวดหมู่ชัดเจน
 
